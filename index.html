@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b12">
+  <title>ReelTime — Movie Tickets</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="ReelTime home"><span class="brand-mark">R</span> reel<span>time</span></a>
+    <nav aria-label="Main navigation"><a href="#movies">Movies</a><a href="#booking">Book tickets</a></nav>
+    <button class="icon-button profile-button" aria-label="Your profile">JD</button>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow">THE BIG SCREEN IS CALLING</p>
+        <h1 id="hero-title">Make tonight<br> <span>a movie night.</span></h1>
+        <p class="hero-copy">Find your next favorite story, pick your seats, and settle in.</p>
+        <a class="button button-primary" href="#movies">Explore movies <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="ticket-art"><span>ADMIT ONE</span><b>YOUR<br>NEXT<br>STORY</b><small>REELTIME CINEMAS</small></div></div>
+      <div class="hero-meta"><span>✦ CURATED FOR YOU</span><span>4K · DOLBY ATMOS · BIG FEELINGS</span></div>
+    </section>
+
+    <section class="section movie-section" id="movies" aria-labelledby="movies-title">
+      <div class="section-heading"><div><p class="eyebrow">PICK YOUR PICTURE</p><h2 id="movies-title">In the spotlight</h2></div><div class="catalog-tools"><label class="search-box"><span aria-hidden="true">⌕</span><input id="movie-search" type="search" placeholder="Search movies..." aria-label="Search movies"></label><label class="sr-only" for="genre-filter">Filter by genre</label><select id="genre-filter"><option value="all">All genres</option></select></div></div>
+      <div class="tabs" role="tablist" aria-label="Movie availability"><button class="tab active" role="tab" aria-selected="true" data-tab="now">Now showing</button><button class="tab" role="tab" aria-selected="false" data-tab="soon">Coming soon</button></div>
+      <div id="movie-grid" class="movie-grid" aria-live="polite"></div>
+      <p id="empty-state" class="empty-state" hidden>No movies match those filters. Try another search.</p>
+    </section>
+
+    <section class="booking-section" id="booking" aria-labelledby="booking-title">
+      <div class="section-heading booking-heading"><div><p class="eyebrow">YOUR NIGHT, YOUR WAY</p><h2 id="booking-title">Book your seats</h2></div><div class="step-label"><span class="step-dot">1</span> Choose a showtime <span class="step-line"></span><span class="step-dot">2</span> Pick your seats</div></div>
+      <div class="booking-layout">
+        <article id="movie-detail" class="movie-detail"><div class="detail-placeholder"><span class="placeholder-icon">✦</span><h3>Choose a movie to get started</h3><p>Your showtimes and cinema details will appear here.</p></div></article>
+        <div class="booking-controls" id="booking-controls" hidden>
+          <div class="control-block"><div class="control-title"><h3>Choose a date</h3><span class="muted">Next 5 days</span></div><div id="date-list" class="date-list"></div></div>
+          <div class="control-block"><div class="control-title"><h3>Choose a time</h3><span id="selected-date-label" class="muted"></span></div><div id="showtime-list" class="showtime-list"></div></div>
+          <div class="control-block seat-block"><div class="control-title"><div><h3>Choose your seats</h3><p class="muted">Tap available seats to select</p></div><div class="timer" id="timer" aria-live="polite"><span>◷</span> <b>08:00</b></div></div>
+            <div class="screen"><span>SCREEN</span></div>
+            <div id="seat-map" class="seat-map" aria-label="Cinema seat map"></div>
+            <div class="seat-legend"><span><i class="legend-seat available"></i>Available</span><span><i class="legend-seat selected"></i>Selected</span><span><i class="legend-seat occupied"></i>Occupied</span></div>
+          </div>
+          <div class="checkout-grid">
+            <div class="control-block snacks-block"><div class="control-title"><div><h3>Make it a combo?</h3><p class="muted">A little something for the trailers</p></div></div><div id="snack-list" class="snack-list"></div></div>
+            <div class="control-block summary-block"><h3>Your order</h3><div class="summary-line"><span>Tickets <small id="ticket-count">0 seats</small></span><b id="ticket-total">₹0</b></div><div class="summary-line"><span>Snacks</span><b id="snack-total">₹0</b></div><form id="promo-form" class="promo-form"><label for="promo-code">Promo code</label><div><input id="promo-code" type="text" placeholder="Enter code"><button type="submit">Apply</button></div><p id="promo-message" aria-live="polite"></p></form><div class="summary-line discount-line" id="discount-line" hidden><span>Discount</span><b id="discount-total">−₹0</b></div><div class="summary-line grand-total"><span>Total</span><b id="grand-total">₹0</b></div><button class="button button-primary checkout-button" id="checkout-button" disabled>Confirm booking <span aria-hidden="true">→</span></button><p class="secure-note">🔒 Secure checkout · Pay at cinema</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="#top"><span class="brand-mark">R</span> reel<span>time</span></a><p>Good stories. Great company. See you at the movies.</p><span>© 2025 ReelTime Cinemas</span></footer>
+
+  <div class="modal-backdrop" id="confirmation-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden><div class="confirmation-card"><button class="modal-close" id="close-modal" aria-label="Close confirmation">×</button><div class="success-icon">✓</div><p class="eyebrow">IT'S A DATE</p><h2 id="modal-title">You're going to the movies!</h2><p id="confirmation-copy" class="muted"></p><div class="confirmation-total"><span>Paid at cinema</span><b id="confirmation-total"></b></div><button class="button button-primary" id="done-button">Lovely, thanks</button></div></div>
+</body>
+</html>
